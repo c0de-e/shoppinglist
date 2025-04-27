@@ -1,0 +1,1 @@
+## Simple script to create Google Tasks from [Tandoor Recipes](https://github.com/TandoorRecipes/recipes) csv export.
