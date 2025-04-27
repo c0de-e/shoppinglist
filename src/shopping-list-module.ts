@@ -24,13 +24,16 @@ export function onOpen(e: any) {
 
 export function createShoppingList() {
   const shoppingList = GetOrCreateShoppingListTaskList();
-  const foodColumn = GetFoodColumn().sort((a, b) => b.localeCompare(a));
+  const foodColumn = GetFoodColumn();
+  // Remove the 'food' value
+  foodColumn.shift();
+  foodColumn.sort((a, b) => b.localeCompare(a));
 
   const dateTask = Tasks.newTask();
   dateTask.title = SpreadsheetApp.getActiveSheet().getName();
   Tasks.Tasks?.insert(dateTask, shoppingList.id as string);
   const dt = GetTask(dateTask.title, shoppingList.title as string);
-  for (let i = 1; i < foodColumn.length; i++) {
+  for (let i = 0; i < foodColumn.length; i++) {
     const currentIngredient = foodColumn[i];
     const newTask = Tasks.newTask();
     newTask.title = currentIngredient;
