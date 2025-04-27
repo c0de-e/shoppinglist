@@ -24,7 +24,7 @@ export function onOpen(e: any) {
 
 export function createShoppingList() {
   const shoppingList = GetOrCreateShoppingListTaskList();
-  const foodColumn = GetFoodColumn();
+  const foodColumn = GetFoodColumn().sort((a, b) => b.localeCompare(a));
 
   const dateTask = Tasks.newTask();
   dateTask.title = SpreadsheetApp.getActiveSheet().getName();
